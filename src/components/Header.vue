@@ -1,13 +1,13 @@
 <template>
-    <header>
-        <a href="#">
+    <header class="px-20 d-flex flex-row align-items-center">
+        <a href="#" class="d-flex flex-row align-items-center mr-10">
             <img src="../assets/logo.svg" alt="">
         </a>
-        <span class="logo">
+        <span class="logo mr-20">
             Boutique
         </span>
-        <ul>
-            <li>
+        <ul class="d-flex flex-row flex-fill">
+            <li class="mr-10">
                 <a href="#">
                     Boutique
                 </a>
@@ -18,8 +18,8 @@
                 </a>
             </li>
         </ul>
-        <ul>
-            <li>
+        <ul class="d-flex flex-row">
+            <li class="mr-10" >
                 <a href="#">
                     Inscription
                 </a>
@@ -39,6 +39,22 @@
 
 <style lang="scss" scoped>
 
+    header{
+        background-color: var(--primary-1);
+        a {
+            color: var(--text-primary-color);
+
+            img{
+                width: 20px;
+                margin-right: 5px;
+            }
+            .logo {
+                font-weight: 700;
+                font-size: 30px;
+                color: var(--text-primary-color);
+            }
+        }
+    }
 
 
 </style>

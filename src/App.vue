@@ -1,9 +1,9 @@
 <template>
     <div class="app-container">
-        <TheHeader class="header" />
+        <TheHeader class="header b1" />
         <!-- <Shop class="shop b2"/>
-        <Cart class="cart b3"/>
-        <TheFooter class="footer b4"/> -->
+        <Cart class="cart b3"/> -->
+        <TheFooter class="footer"/>
     </div>
 
 </template>
