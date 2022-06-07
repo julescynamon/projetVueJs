@@ -56,6 +56,44 @@ body {
     font-family: var(--font-family);
 }
 
+// Bouton
+
+.btn {
+    padding: 8px 15px;
+    border: 0;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.2s;
+}
+
+.btn-primary {
+    background-color: var(--primary-1);
+    color: var(--white);
+
+    &:hover {
+        background-color: var(--primary-2);
+    }
+}
+
+.btn-danger {
+    background-color: var(--danger-1);
+    color: var(--white);
+
+    &:hover {
+        background-color: var(--danger-2);
+    }
+}
+
+.btn-succes {
+    background-color: var(--success-1);
+    color: var(--white);
+
+    &:hover {
+        background-color: var(--success-2);
+    }
+}
+
 // Flex
 
 .d-flex {
