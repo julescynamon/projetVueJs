@@ -3,8 +3,16 @@
             gridEmpty: cartEmpty
         }">
         <TheHeader class="header b1" />
-        <Shop :products="state.products" @add-product-to-cart="addToCart" class="shop"/>
-        <Cart v-if="!cartEmpty" :cart="state.cart" class="cart" @remove-product-from-cart="removeProductFromCart"/>
+        <Shop @update-filter="updateFilter" 
+            :products="filteredProduct" 
+            @add-product-to-cart="addToCart" 
+            class="shop"
+            />
+        <Cart v-if="!cartEmpty" 
+            :cart="state.cart" 
+            class="cart" 
+            @remove-product-from-cart="removeProductFromCart"
+            />
         <TheFooter class="footer"/>
     </div>
 
@@ -17,7 +25,7 @@
     import Shop from './components/Shop/Shop.vue';
     import data from './data/products';
     import { computed, reactive } from 'vue';
-    import type { FiltersInterface, ProductCartInterface, ProductInterface } from './interfaces';
+    import type { FiltersInterface, FilterUpdate, ProductCartInterface, ProductInterface } from './interfaces';
 import { DEFAULT_FILTERS } from './data/filters';
 
 
@@ -28,7 +36,7 @@ import { DEFAULT_FILTERS } from './data/filters';
     }>({
         products: data,
         cart: [],
-        filters: DEFAULT_FILTERS
+        filters: { ...DEFAULT_FILTERS }
     });
 
     function addToCart(productId: number) : void {
@@ -63,6 +71,31 @@ import { DEFAULT_FILTERS } from './data/filters';
     }
 
     const cartEmpty = computed(() => state.cart.length === 0);
+
+    const filteredProduct = computed(() => {
+        return state.products.filter(product => {
+            if (product.title.toLowerCase().startsWith(state.filters.search.toLowerCase()) && 
+                product.price >= state.filters.priceRange[0] &&
+                product.price <= state.filters.priceRange[1] &&
+                (product.category === state.filters.category || state.filters.category === 'all')) {
+                return true;
+            } else {
+                return false;
+            }
+        });
+    });
+
+    function updateFilter(filterUpdate: FilterUpdate) : void {
+        if(filterUpdate.search !== undefined) {
+            state.filters.search = filterUpdate.search;
+        } else if(filterUpdate.priceRange) {
+            state.filters.priceRange = filterUpdate.priceRange;
+        } else if(filterUpdate.category) {
+            state.filters.category = filterUpdate.category;
+        } else {
+            state.filters = DEFAULT_FILTERS;
+        }
+    }
 
 </script>
 
