@@ -4,8 +4,9 @@
         }">
         <TheHeader class="header b1" />
         <Shop @update-filter="updateFilter" 
-            :products="filteredProduct" 
             @add-product-to-cart="addToCart" 
+            :products="filteredProduct" 
+            :filters="state.filters"
             class="shop"
             />
         <Cart v-if="!cartEmpty" 
